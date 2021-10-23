@@ -1,3 +1,4 @@
+#student_name "o.kryuchenko"
 apiVersion: v1
 kind: Service
 metadata:
