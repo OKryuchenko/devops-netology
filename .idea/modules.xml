@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../DevOps/.idea/DevOps.iml" filepath="$PROJECT_DIR$/../DevOps/.idea/DevOps.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/DevOps_Netology.iml" filepath="$PROJECT_DIR$/.idea/DevOps_Netology.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../sysadm-homeworks/.idea/sysadm-homeworks.iml" filepath="$PROJECT_DIR$/../sysadm-homeworks/.idea/sysadm-homeworks.iml" />
     </modules>
   </component>
 </project>
