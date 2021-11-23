@@ -1,6 +1,6 @@
 #!/bin/bash
 # display command line options
-
+#editing  merge.sh
 count=1
 while [[ -n "$1" ]]; do
     echo "Parameter #$count = $1"
