@@ -1,3 +1,4 @@
+##1. 
 vagrant@ubuntu-hirsute:~$ wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
 ```--2022-01-13 19:15:08--  https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
 Resolving github.com (github.com)... 140.82.121.4
@@ -1143,8 +1144,8 @@ Jan 13 19:30:48 ubuntu-hirsute node_exporter[603]: ts=2022-01-13T19:30:48.305Z c
 lines 1-19/19 (END)
 ```
 ##Метрики
-
-
+##2.
+vagrant@ubuntu-hirsute:~$ curl http://localhost:9100/metrics   
 vagrant@ubuntu-hirsute:~$ curl http://localhost:9100/metrics | grep "TYPE node_memory"
 ```
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -1273,10 +1274,10 @@ vagrant@ubuntu-hirsute:~$ curl http://localhost:9100/metrics | grep "TYPE node_d
 100 57495    0 57495    0     0  1811k      0 --:--:-- --:--:-- --:--:-- 1811k
 ```
 
-__________________
+##3.
 
-vagrant@ubuntu-hirsute:~$ sudo apt install -y netdata
-Reading package lists... Done
+vagrant@ubuntu-hirsute:~$ sudo apt install -y netdata   
+```Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
 The following additional packages will be installed:
@@ -1322,6 +1323,7 @@ No services need to be restarted.
 No containers need to be restarted.
 
 No user sessions are running outdated binaries.
+```
 vagrant@ubuntu-hirsute:~$ sudo nano /etc/netdata/netdata.conf
 
 ```
@@ -1349,6 +1351,22 @@ vagrant@ubuntu-hirsute:~$ sudo nano /etc/netdata/netdata.conf
 PS C:\git\devops-netology\03-sysadmin-01-terminal\vagrant2> vagrant reload   
 PS C:\git\devops-netology\03-sysadmin-01-terminal\vagrant2> vagrant ssh   
 ![img.png](img.png)
+##4
+Думаю можно по параметру DMI и Hypervisor detected: KVM 
+![img_5.png](img_5.png)
+##5
+этот параметр ядра показывает максимально возможное число открытых файлов в системе (максимальное количество дескрипторов открытых файлов - 1048576). 
+Но другой лимит не позволит достичь такого большого числа: команда ulimit -n отображает ограничение максимум в 1024 открытых файловых дескриптора
+![img_6.png](img_6.png)
+##6.
+![img_7.png](img_7.png)
+
+второй терминал открыл через консоль virtualbox
+увидел спящий процесс с параллельного сеанса
+
+![img_8.png](img_8.png)
+
+##7. 
 vagrant@ubuntu-hirsute:~$ :(){ :|:& };:
 
 ```
@@ -1359,6 +1377,10 @@ vagrant@ubuntu-hirsute:~$ :(){ :|:& };:
 ![img_1.png](img_1.png)
 
 ![img_2.png](img_2.png)
+
+
+
+
 
 
 
