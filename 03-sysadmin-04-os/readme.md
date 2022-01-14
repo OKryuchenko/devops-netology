@@ -1,5 +1,5 @@
 ##1. 
-vagrant@ubuntu-hirsute:~$ wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
+wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
 ```--2022-01-13 19:15:08--  https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
 Resolving github.com (github.com)... 140.82.121.4
 Connecting to github.com (github.com)|140.82.121.4|:443... connected.
@@ -17,20 +17,20 @@ node_exporter-1.3.1.linux-amd 100%[=============================================
 
 2022-01-13 19:15:11 (3.61 MB/s) - ‘node_exporter-1.3.1.linux-amd64.tar.gz’ saved [9033415/9033415]
 ```
-vagrant@ubuntu-hirsute:~$ tar zxvf node_exporter-1.3.1.linux-amd64.tar.gz
+tar zxvf node_exporter-1.3.1.linux-amd64.tar.gz
 ```
 node_exporter-1.3.1.linux-amd64/
 node_exporter-1.3.1.linux-amd64/LICENSE
 node_exporter-1.3.1.linux-amd64/NOTICE
 node_exporter-1.3.1.linux-amd64/node_exporter
 ```
-vagrant@ubuntu-hirsute:~$ dir  
+dir  
 node_exporter-1.3.1.linux-amd64  node_exporter-1.3.1.linux-amd64.tar.gz  
-vagrant@ubuntu-hirsute:~$ cd node_exporter-1.3.1.linux-amd64/  
-vagrant@ubuntu-hirsute:~/node_exporter-1.3.1.linux-amd64$ sudo useradd -r -M -s /bin/false node_exporter    
-vagrant@ubuntu-hirsute:~/node_exporter-1.3.1.linux-amd64$ sudo cp node_exporter /usr/local/bin  
-vagrant@ubuntu-hirsute:~/node_exporter-1.3.1.linux-amd64$ sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter  
-vagrant@ubuntu-hirsute:~/node_exporter-1.3.1.linux-amd64$ sudo nano /etc/systemd/system/node_exporter.service
+cd node_exporter-1.3.1.linux-amd64/  
+sudo useradd -r -M -s /bin/false node_exporter    
+sudo cp node_exporter /usr/local/bin  
+sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter  
+sudo nano /etc/systemd/system/node_exporter.service
 ```
 GNU nano 5.4                            /etc/systemd/system/node_exporter.service                                     [Unit]
 Description=Prometheus Node Exporter
@@ -1119,8 +1119,8 @@ promhttp_metric_handler_requests_total{code="500"} 0
 promhttp_metric_handler_requests_total{code="503"} 0
 vagrant@ubuntu-hirsute:~/node_exporter-1.3.1.linux-amd64$
 ```
-vagrant@ubuntu-hirsute:~/node_exporter-1.3.1.linux-amd64$ sudo reboot   
-vagrant@ubuntu-hirsute:~$ sudo systemctl status node_exporter
+sudo reboot  
+sudo systemctl status node_exporter
 ```
 ● node_exporter.service - Prometheus Node Exporter
      Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; vendor preset: enabled)
@@ -1145,8 +1145,8 @@ lines 1-19/19 (END)
 ```
 ##Метрики
 ##2.
-vagrant@ubuntu-hirsute:~$ curl http://localhost:9100/metrics   
-vagrant@ubuntu-hirsute:~$ curl http://localhost:9100/metrics | grep "TYPE node_memory"
+curl http://localhost:9100/metrics     
+curl http://localhost:9100/metrics | grep "TYPE node_memory"
 ```
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -1201,7 +1201,7 @@ vagrant@ubuntu-hirsute:~$ curl http://localhost:9100/metrics | grep "TYPE node_m
 # TYPE node_memory_WritebackTmp_bytes gauge
 # TYPE node_memory_Writeback_bytes gauge
 ```
-vagrant@ubuntu-hirsute:~$ curl http://localhost:9100/metrics | grep "TYPE node_network"
+curl http://localhost:9100/metrics | grep "TYPE node_network"
 ```
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -1241,7 +1241,7 @@ vagrant@ubuntu-hirsute:~$ curl http://localhost:9100/metrics | grep "TYPE node_n
 # TYPE node_network_transmit_queue_length gauge
 # TYPE node_network_up gauge
 ```
-vagrant@ubuntu-hirsute:~$ curl http://localhost:9100/metrics | grep "TYPE node_cpu"
+curl http://localhost:9100/metrics | grep "TYPE node_cpu"
 ```
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -1249,7 +1249,7 @@ vagrant@ubuntu-hirsute:~$ curl http://localhost:9100/metrics | grep "TYPE node_c
 08k# TYPE node_cpu_seconds_total counter
 ```
 
-vagrant@ubuntu-hirsute:~$ curl http://localhost:9100/metrics | grep "TYPE node_disk"
+curl http://localhost:9100/metrics | grep "TYPE node_disk"
 ```
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -1274,9 +1274,8 @@ vagrant@ubuntu-hirsute:~$ curl http://localhost:9100/metrics | grep "TYPE node_d
 100 57495    0 57495    0     0  1811k      0 --:--:-- --:--:-- --:--:-- 1811k
 ```
 
-##3.
-
-vagrant@ubuntu-hirsute:~$ sudo apt install -y netdata   
+##3.   
+sudo apt install -y netdata   
 ```Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
@@ -1324,7 +1323,7 @@ No containers need to be restarted.
 
 No user sessions are running outdated binaries.
 ```
-vagrant@ubuntu-hirsute:~$ sudo nano /etc/netdata/netdata.conf
+sudo nano /etc/netdata/netdata.conf
 
 ```
 # NetData Configuration
@@ -1351,14 +1350,14 @@ vagrant@ubuntu-hirsute:~$ sudo nano /etc/netdata/netdata.conf
 PS C:\git\devops-netology\03-sysadmin-01-terminal\vagrant2> vagrant reload   
 PS C:\git\devops-netology\03-sysadmin-01-terminal\vagrant2> vagrant ssh   
 ![img.png](img.png)
-##4
+##4.   
 Думаю можно по параметру DMI и Hypervisor detected: KVM 
 ![img_5.png](img_5.png)
-##5
+##5.   
 этот параметр ядра показывает максимально возможное число открытых файлов в системе (максимальное количество дескрипторов открытых файлов - 1048576). 
 Но другой лимит не позволит достичь такого большого числа: команда ulimit -n отображает ограничение максимум в 1024 открытых файловых дескриптора
 ![img_6.png](img_6.png)
-##6.
+##6.   
 ![img_7.png](img_7.png)
 
 второй терминал открыл через консоль virtualbox
@@ -1367,7 +1366,7 @@ PS C:\git\devops-netology\03-sysadmin-01-terminal\vagrant2> vagrant ssh
 ![img_8.png](img_8.png)
 
 ##7. 
-vagrant@ubuntu-hirsute:~$ :(){ :|:& };:
+:(){ :|:& };:
 
 ```
 Команда :(){ :|:& };:
