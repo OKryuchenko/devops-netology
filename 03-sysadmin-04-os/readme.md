@@ -1,3 +1,10 @@
+
+> > https://www.freedesktop.org/software/systemd/man/systemd.service.html#ExecStart=   
+> https://unix.stackexchange.com/questions/323914/dynamic-variables-in-systemd-service-unit-files
+> https://stackoverflow.com/questions/48843949/systemd-use-variables-in-a-unit-file
+
+systemd-run --uid ${MYS_USER} -p WorkingDirectory=${MYS_PATH} ${MYS_PATH}/usr/bin/myservice -C ${MYS_PATH}/etc/myservice.conf
+
 ##1. 
 wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
 ```--2022-01-13 19:15:08--  https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
