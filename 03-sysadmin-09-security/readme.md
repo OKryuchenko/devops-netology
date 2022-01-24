@@ -123,6 +123,7 @@ sudo tcpdump -c 100 -w dumpfile.pcap
     0 packets dropped by kernel
 
 ```
+![img_1.png](img_1.png)
  ---
 ## Задание для самостоятельной отработки (необязательно к выполнению)
 
