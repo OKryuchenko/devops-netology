@@ -1,14 +1,27 @@
-
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
 Vagrant.configure("2") do |config|
-config.vm.box = "ubuntu/hirsute64"
-config.vm.provider :virtualbox do |vb|
-config.vm.network "forwarded_port", guest: 19999, host: 19999
-config.vm.network "forwarded_port", guest: 443, host: 443
-config.vm.network "forwarded_port", guest: 80, host: 80
-vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    hostname = "devsys.box"
+    config.vm.define "testing"
+    config.vm.box = "bento/ubuntu-20.04"
+    config.vm.provider :virtualbox do |vb|
+    config.vm.network "forwarded_port", guest: 443, host: 443
+    config.vm.network "forwarded_port", guest: 80, host: 80
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    # Setup
+    config.vm.provision :shell, :inline => "sudo apt-get update --fix-missing"
+    config.vm.provision :shell, :inline => "sudo apt-get install -q -y jq nginx"
+    #Shared folders
+    config.vm.synced_folder ".", "/mnt/host"
+     end
 end
-end
+
+
+
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
 
 #config.vm.provision "shell", inline:apt-get update
 
