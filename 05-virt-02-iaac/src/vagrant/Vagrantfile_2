@@ -8,7 +8,7 @@ INVENTORY_PATH = "../ansible/inventory"
 
 servers = [
   {
-    :hostname => HOST_PREFIX + "2" + DOMAIN,
+    :hostname => HOST_PREFIX + "1" + DOMAIN,
     :ip => NET + "11",
     :ssh_host => "20011",
     :ssh_vm => "22",
@@ -18,7 +18,7 @@ servers = [
 ]
 
 Vagrant.configure(2) do |config|
-  config.vm.synced_folder ".", "/vagrant", disabled: false
+  config.vm.synced_folder "../..", "/vagrant", disabled: false
   servers.each do |machine|
     config.vm.define machine[:hostname] do |node|
       node.vm.box = ISO
@@ -29,7 +29,9 @@ Vagrant.configure(2) do |config|
         vb.customize ["modifyvm", :id, "--memory", machine[:ram]]
         vb.customize ["modifyvm", :id, "--cpus", machine[:core]]
         vb.name = machine[:hostname]
-      end
+              end
+      #Shared folders
+      config.vm.synced_folder ".", "/mnt/host"
       node.vm.provision "ansible" do |setup|
         setup.inventory_path = INVENTORY_PATH
         setup.playbook = "../ansible/provision.yml"
