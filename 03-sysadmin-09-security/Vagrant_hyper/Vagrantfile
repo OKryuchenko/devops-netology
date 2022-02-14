@@ -1,32 +1,17 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-    hostname = "devsys.box"
-    config.vm.define "devsys.box"
-    config.vm.box = "bento/ubuntu-20.04"
-    config.vm.provider :virtualbox do |vb|
-    config.vm.network "forwarded_port", guest: 443, host: 443
-    config.vm.network "forwarded_port", guest: 80, host: 80
-    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-    # Setup
-    config.vm.provision :shell, :inline => "sudo apt-get update --fix-missing"
-    config.vm.provision :shell, :inline => "sudo apt-get install -q -y jq nginx"
-    config.vm.provision :shell, :inline => "curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -"
-    config.vm.provision :shell, :inline => 'sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"'
-    config.vm.provision :shell, :inline => "sudo apt-get update && sudo apt-get install vault"
-    #Shared folders
-    config.vm.synced_folder ".", "/mnt/host"
-     end
+config.vm.box = "bento/ubuntu-20.04"
+config.vm.provider :virtualbox do |vb|
+config.vm.synced_folder "../..", "/vagrant", disabled: false
+config.vm.network "forwarded_port", guest: 19999, host: 19999
+config.vm.network "forwarded_port", guest: 443, host: 443
+config.vm.network "forwarded_port", guest: 80, host: 80
+vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+
 end
-
-
-
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
-
+end
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 #config.vm.provision "shell", inline:apt-get update
 
 #apt-get install -y apache2
