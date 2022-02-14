@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
     hostname = "devsys.box"
-    config.vm.define "devsys.box"
+    config.vm.define "devsys_2.box"
     config.vm.box = "bento/ubuntu-20.04"
     config.vm.provider :virtualbox do |vb|
     config.vm.network "forwarded_port", guest: 443, host: 443
@@ -13,9 +13,9 @@ Vagrant.configure("2") do |config|
     # Setup
     config.vm.provision :shell, :inline => "sudo apt-get update --fix-missing"
     config.vm.provision :shell, :inline => "sudo apt-get install -q -y jq nginx"
-    config.vm.provision :shell, :inline => "curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -"
-    config.vm.provision :shell, :inline => 'sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"'
-    config.vm.provision :shell, :inline => "sudo apt-get update && sudo apt-get install vault"
+    #config.vm.provision :shell, :inline => "curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -"
+    #config.vm.provision :shell, :inline => 'sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"'
+    #config.vm.provision :shell, :inline => "sudo apt-get update && sudo apt-get install vault"
     #Shared folders
     config.vm.synced_folder ".", "/mnt/host"
      end

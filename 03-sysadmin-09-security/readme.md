@@ -70,7 +70,10 @@ cd testssl.sh
 
  Heartbleed (CVE-2014-0160)                not vulnerable (OK), no heartbeat extension
  CCS (CVE-2014-0224)                       not vulnerable (OK)
- Ticketbleed (CVE-2016-9244), experiment.  not vulnerable (OK), reply empty
+ Ticketbleed 
+ 
+ 
+ (CVE-2016-9244), experiment.  not vulnerable (OK), reply empty
  ROBOT                                     VULNERABLE (NOT ok) - weakly vulnerable as the attack would take too long
  Secure Renegotiation (RFC 5746)           supported (OK)
  Secure Client-Initiated Renegotiation     not vulnerable (OK)
