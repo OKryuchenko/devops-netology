@@ -68,18 +68,21 @@ Hey, Netology
 ## Задача 3
 
 - Запустите первый контейнер из образа ***centos*** c любым тэгом в фоновом режиме, подключив папку ```/data``` из текущей рабочей директории на хостовой машине в ```/data``` контейнера;
->sudo docker pull centos:7
-> sudo docker run -v /home/vagrant/data:/home/data -d --name centos-7-v1 -e TZ=UTC  centos:7 
-> sudo docker run -d --name centos-7-v1 eeb6ee3f44bd 
+> sudo docker build -t okryuchenko/centos7:001 .
+> sudo docker run -d --name centos7-001-v1 -e TZ=UTC okryuchenko/centos7:001
+> sudo docker run -v /home/vagrant/data:/home/data -d --name centos7-001-v2 -e TZ=UTC okryuchenko/centos7:001
 - Запустите второй контейнер из образа ***debian*** в фоновом режиме, подключив папку ```/data``` из текущей рабочей директории на хостовой машине в ```/data``` контейнера;
->sudo docker pull debian:stable-20220125
-> sudo docker run -v /home/vagrant/data:/home/share/data -d --name debian-v1 -e TZ=UTC  debian:stable-20220125
+>sudo docker build -t okryuchenko/debian:v777 .
+> sudo docker run -v /home/vagrant/data:/home/data --name debian-v777 -d -e TZ=UTC okryuchenko/debian:v777
+
 - Подключитесь к первому контейнеру с помощью ```docker exec``` и создайте текстовый файл любого содержания в ```/data```;
->
+>vagrant@vm01:/vagrant/debian$ sudo docker exec -it 15e40345c585 bash
+>[root@15e40345c585 /]# cd home/data/
+>[root@15e40345c585 data]# touch file_from_centos
 - Добавьте еще один файл в папку ```/data``` на хостовой машине;
->
+![img_1.png](img_1.png)
 - Подключитесь во второй контейнер и отобразите листинг и содержание файлов в ```/data``` контейнера.
->
+>не удалось запустить контейнер с debian
 ## Задача 4 (*)
 
 Воспроизвести практическую часть лекции самостоятельно.
