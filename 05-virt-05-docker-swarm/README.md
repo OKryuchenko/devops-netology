@@ -69,6 +69,11 @@ sudo docker service ls
 docker swarm update --autolock=true
 ```
 ![img_6.png](img_6.png)
+```
+Docker может защитить общий ключ шифрования TLS и ключ, используемый для шифрования и расшифровки журналов Raft в 
+состоянии покоя, позволяя вам стать владельцем этих ключей и требовать ручной разблокировки ваших менеджеров.
+Эта функция называется автоблокировкой 
+```
 
 
 https://docs.docker.com/engine/reference/commandline/swarm_init/
