@@ -76,6 +76,6 @@ Docker может защитить общий ключ шифрования TLS 
 ```
 
 
-https://docs.docker.com/engine/reference/commandline/swarm_init/
+https://docs.docker.com/engine/reference/commandline/swarm_init/   
 https://docs.docker.com/engine/swarm/admin_guide/
 
