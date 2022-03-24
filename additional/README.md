@@ -4,7 +4,7 @@
 
 1. [Наиболее полное объяснение что такое pub\sub](https://habr.com/ru/post/278237/)
 2. [CAP теорема простым языком](https://habr.com/ru/post/130577/)
-
+3. [No SQL](https://tproger.ru/translations/types-of-nosql-db/)
 ## SQL
 
 1. [Про создание пользователей](https://postgrespro.ru/docs/postgresql/9.5/sql-createuser)
@@ -27,3 +27,6 @@
 6. [Оператор ANALYZE](https://postgrespro.ru/docs/postgresql/9.6/sql-analyze)
 7. [Оператор EXPLAIN](https://postgrespro.ru/docs/postgresql/9.6/sql-explain)
 8. [Оператор VACUUM](https://postgrespro.ru/docs/postgresql/9.6/sql-vacuum)
+
+# Docker
+1. [Docker Swarm](https://docs.docker.com/engine/reference/commandline/swarm_init/) 
