@@ -12,12 +12,45 @@
 
 Приведите получившуюся команду или docker-compose манифест.
 
+```
+sversion: "3.9"
+services:
+  postgres:
+    image: postgres:12
+    environment:
+      POSTGRES_DB: "test_db"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ../2. Init Database:/docker-entrypoint-initdb.d
+      - .:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+```
+При попытке запуска psql получил ошибку
+
+![img.png](img.png)
+
+решение, запуск от пользователя   
+psql -U postgres
+
 ## Задача 2
 
 В БД из задачи 1: 
 - создайте пользователя test-admin-user и БД test_db
+CREATE DATABASE test_db;
+CREATE USER test_admin_user;
 - в БД test_db создайте таблицу orders и clients (спeцификация таблиц ниже)
+```
+CREATE TABLE orders (
+    id  SERIAL PRIMARY KEY,
+    Наименование char(20),
+    цена INTEGER
+)
+```
 - предоставьте привилегии на все операции пользователю test-admin-user на таблицы БД test_db
+>GRANT ALL ON DATABASE test_db TO test_admin_user;
 - создайте пользователя test-simple-user  
 - предоставьте пользователю test-simple-user права на SELECT/INSERT/UPDATE/DELETE данных таблиц БД test_db
 

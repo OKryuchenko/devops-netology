@@ -10,6 +10,10 @@
 1. [Про создание пользователей](https://postgrespro.ru/docs/postgresql/9.5/sql-createuser)
 2. [Про ограничения, ключи, уникальность и NOT NULL](https://postgrespro.ru/docs/postgresql/9.5/ddl-constraints)
 3. [Подробное описание видов индексов](https://habr.com/ru/post/247373/)
+4. [SQL GRANT — определить права доступа](https://postgrespro.ru/docs/postgresql/9.6/sql-grant/)
+5. [Команды SQL](https://postgrespro.ru/docs/postgresql/9.6/sql-commands)
+6. [Pandas](https://habr.com/ru/company/ruvds/blog/494720/)
+7. 
 
 ## MySQL
 
@@ -27,6 +31,10 @@
 6. [Оператор ANALYZE](https://postgrespro.ru/docs/postgresql/9.6/sql-analyze)
 7. [Оператор EXPLAIN](https://postgrespro.ru/docs/postgresql/9.6/sql-explain)
 8. [Оператор VACUUM](https://postgrespro.ru/docs/postgresql/9.6/sql-vacuum)
+9. [SQL Команды](https://postgrespro.ru/docs/postgrespro/10/sql-commands)
+10. [Postgresql in docker](https://habr.com/ru/post/578744/?)
+11. [Запускаем PostgreSQL в Docker: от простого к сложному](https://habr.com/ru/post/578744/?)
+
 
 # Docker
 1. [Docker Swarm](https://docs.docker.com/engine/reference/commandline/swarm_init/) 
