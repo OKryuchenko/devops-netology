@@ -47,12 +47,39 @@ CREATE TABLE orders (
     id  SERIAL PRIMARY KEY,
     Наименование char(20),
     цена INTEGER
-)
+   );
 ```
+```
+test_db=# CREATE TABLE clients
+(
+        id INT,
+        name VARCHAR(50),
+        country VARCHAR(50),
+        order_id INT,
+        foreign key (order_id) REFERENCES orders (id)
+);
+```
+![img_1.png](img_1.png)
+
+
 - предоставьте привилегии на все операции пользователю test-admin-user на таблицы БД test_db
 >GRANT ALL ON DATABASE test_db TO test_admin_user;
-- создайте пользователя test-simple-user  
+- создайте пользователя test-simple-user 
+>CREATE USER test_simple_user;
 - предоставьте пользователю test-simple-user права на SELECT/INSERT/UPDATE/DELETE данных таблиц БД test_db
+
+При попытке присвоить необходимые права для базы данных 
+>GRANT SELECT, INSERT, UPDATE, DELETE ON DATABASE test_db TO test_simple_user;
+
+получил ошибку
+ERROR:  invalid privilege type SELECT for database
+
+Решение: присвоить права таблицам по отдельности:
+
+>GRANT SELECT, INSERT, UPDATE, DELETE ON clients TO test_simple_user;  
+GRANT SELECT, INSERT, UPDATE, DELETE ON orders TO test_simple_user;
+
+
 
 Таблица orders:
 - id (serial primary key)
@@ -67,10 +94,23 @@ CREATE TABLE orders (
 
 Приведите:
 - итоговый список БД после выполнения пунктов выше,
-- описание таблиц (describe)
-- SQL-запрос для выдачи списка пользователей с правами над таблицами test_db
-- список пользователей с правами над таблицами test_db
 
+>\d
+
+![img_3.png](img_3.png)
+- описание таблиц (describe)
+>\dd
+![img_4.png](img_4.png)
+
+- SQL-запрос для выдачи списка пользователей с правами над таблицами test_db
+```
+test_db=# SELECT grantee, privilege_type
+test_db-# FROM information_schema.role_table_grants
+test_db-# WHERE table_name='clients'
+test_db-# ;
+```
+- список пользователей с правами над таблицами test_db
+![img_2.png](img_2.png)
 ## Задача 3
 
 Используя SQL синтаксис - наполните таблицы следующими тестовыми данными:
@@ -85,6 +125,15 @@ CREATE TABLE orders (
 |Монитор| 7000|
 |Гитара| 4000|
 
+INSERT INTO orders (Наименование, цена) VALUES('Шоколад', '10');
+INSERT INTO orders (Наименование, цена) VALUES('Принтер', '3000');
+INSERT INTO orders (Наименование, цена) VALUES('Книга', '500');
+INSERT INTO orders (Наименование, цена) VALUES('Монитор', '7000');
+INSERT INTO orders (Наименование, цена) VALUES('Гитара', '4000');
+
+>SELECT * FROM orders;
+![img_5.png](img_5.png)
+
 Таблица clients
 
 |ФИО|Страна проживания|
@@ -94,12 +143,24 @@ CREATE TABLE orders (
 |Иоганн Себастьян Бах| Japan |
 |Ронни Джеймс Дио| Russia|
 |Ritchie Blackmore| Russia|
+INSERT INTO clients  (name, country) VALUES('Иванов Иван Иванович', 'USA');
+INSERT INTO clients  (name, country) VALUES('Петров Петр Петрович', 'Canada');
+INSERT INTO clients  (name, country) VALUES('Иоганн Себастьян Бах', 'Japan');
+INSERT INTO clients  (name, country) VALUES('Ронни Джеймс Дио', 'Russia');
+INSERT INTO clients  (name, country) VALUES('Ritchie Blackmore', 'Russia');
+>SELECT * FROM clients;
+
+![img_6.png](img_6.png)
 
 Используя SQL синтаксис:
 - вычислите количество записей для каждой таблицы 
 - приведите в ответе:
     - запросы 
-    - результаты их выполнения.
+    - результаты их выполнения.   
+SELECT COUNT (*) FROM clients;
+![img_7.png](img_7.png)
+SELECT COUNT (*) FROM orders;  
+![img_8.png](img_8.png)
 
 ## Задача 4
 

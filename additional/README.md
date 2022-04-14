@@ -13,7 +13,8 @@
 4. [SQL GRANT — определить права доступа](https://postgrespro.ru/docs/postgresql/9.6/sql-grant/)
 5. [Команды SQL](https://postgrespro.ru/docs/postgresql/9.6/sql-commands)
 6. [Pandas](https://habr.com/ru/company/ruvds/blog/494720/)
-7. 
+7. [mockaroo заполнение данных](https://mockaroo.com/)
+8. [SQL Песочница/Учебник](https://sql-academy.org/ru/sandbox)
 
 ## MySQL
 
