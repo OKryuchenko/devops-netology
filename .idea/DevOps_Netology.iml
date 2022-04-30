@@ -6,5 +6,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="sysadm-homeworks" />
     <orderEntry type="module" module-name="DevOps_HomeWork" />
+    <orderEntry type="module" module-name="mnt-homeworks" />
   </component>
 </module>

@@ -28,6 +28,10 @@ services:
     ports:
       - "5432:5432"
 ```
+
+sudo docker-compose up -d 
+sudo docker exec -it src_postgres_1 bash
+
 При попытке запуска psql получил ошибку
 
 ![img.png](img.png)
@@ -52,13 +56,24 @@ CREATE TABLE orders (
 ```
 test_db=# CREATE TABLE clients
 (
-        id INT,
+        id BIGSERIAL,
         name VARCHAR(50),
         country VARCHAR(50),
         order_id INT,
         foreign key (order_id) REFERENCES orders (id)
 );
 ```
+
+CREATE TABLE clients
+(
+        id BIGSERIAL,
+        name VARCHAR(50),
+        country VARCHAR(50),
+        order_id INT,
+        foreign key (order_id) REFERENCES orders (id)
+);
+
+
 ![img_1.png](img_1.png)
 
 
@@ -99,7 +114,8 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON orders TO test_simple_user;
 
 ![img_3.png](img_3.png)
 - описание таблиц (describe)
->\dd
+>\dd   
+
 ![img_4.png](img_4.png)
 
 - SQL-запрос для выдачи списка пользователей с правами над таблицами test_db
@@ -109,7 +125,7 @@ test_db-# FROM information_schema.role_table_grants
 test_db-# WHERE table_name='clients'
 test_db-# ;
 ```
-- список пользователей с правами над таблицами test_db
+- список пользователей с правами над таблицами test_db   
 ![img_2.png](img_2.png)
 ## Задача 3
 
@@ -155,11 +171,13 @@ INSERT INTO clients  (name, country) VALUES('Ritchie Blackmore', 'Russia');
 Используя SQL синтаксис:
 - вычислите количество записей для каждой таблицы 
 - приведите в ответе:
-    - запросы 
-    - результаты их выполнения.   
-SELECT COUNT (*) FROM clients;
+- запросы 
+- результаты их выполнения.   
+SELECT COUNT (*) FROM clients;   
+
 ![img_7.png](img_7.png)
-SELECT COUNT (*) FROM orders;  
+
+SELECT COUNT (*) FROM orders;    
 ![img_8.png](img_8.png)
 
 ## Задача 4
@@ -175,9 +193,15 @@ SELECT COUNT (*) FROM orders;
 |Иоганн Себастьян Бах| Гитара |
 
 Приведите SQL-запросы для выполнения данных операций.
+> UPDATE clients SET order_id = 3 WHERE id = 1;
+> UPDATE clients SET order_id = 4 WHERE id = 2;
+> UPDATE clients SET order_id = 5 WHERE id = 3;
 
 Приведите SQL-запрос для выдачи всех пользователей, которые совершили заказ, а также вывод данного запроса.
- 
+>SELECT * FROM clients WHERE order_id IS NOT NULL;
+
+![img_9.png](img_9.png)
+
 Подсказк - используйте директиву `UPDATE`.
 
 ## Задача 5
@@ -186,10 +210,23 @@ SELECT COUNT (*) FROM orders;
 (используя директиву EXPLAIN).
 
 Приведите получившийся результат и объясните что значат полученные значения.
+> EXPLAIN SELECT * FROM clients;   
+
+![img_10.png](img_10.png)
+
+```
+Наибольший интерес в выводимой информации представляет ожидаемая стоимость выполнения оператора,
+которая показывает, сколько, по мнению планировщика, будет выполняться этот оператор 
+(это значение измеряется в единицах стоимости, которые не имеют точного определения, но обычно это обращение к странице на диске).      
+cost - стоимость запуска до выдачи первой строки   
+rows - общая стоимость выдачи всех строк   
+
+```
 
 ## Задача 6
 
 Создайте бэкап БД test_db и поместите его в volume, предназначенный для бэкапов (см. Задачу 1).
+>pg_dump test_db > test_db.bak      
 
 Остановите контейнер с PostgreSQL (но не удаляйте volumes).
 

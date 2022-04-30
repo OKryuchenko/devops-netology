@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../DevOps_HomeWork/.idea/DevOps_HomeWork.iml" filepath="$PROJECT_DIR$/../DevOps_HomeWork/.idea/DevOps_HomeWork.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/DevOps_Netology.iml" filepath="$PROJECT_DIR$/.idea/DevOps_Netology.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../mnt-homeworks/.idea/mnt-homeworks.iml" filepath="$PROJECT_DIR$/../mnt-homeworks/.idea/mnt-homeworks.iml" />
       <module fileurl="file://$PROJECT_DIR$/../sysadm-homeworks/.idea/sysadm-homeworks.iml" filepath="$PROJECT_DIR$/../sysadm-homeworks/.idea/sysadm-homeworks.iml" />
     </modules>
   </component>
