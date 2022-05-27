@@ -6,22 +6,72 @@
 [дополнительными материалами](https://github.com/netology-code/virt-homeworks/tree/master/additional/README.md).
 
 ## Задача 1
+>cp /vagrant/06-db-03-mysql/ ~ -r
 
 Используя docker поднимите инстанс MySQL (версию 8). Данные БД сохраните в volume.
+``` 
+version: '3.1'
+
+services:
+
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "p@ssw0rd"
+    volumes:
+      - /mnt/mysql-external-backup:/mysql-external-backup
+      - /mnt/mysql-backup:/mysql-backup
+    ports:
+      - "5432:5432"
+
+  adminer:
+    image: adminer
+    restart: always
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+      ADMINER_DESIGN: nette
+    ports:
+      - 8080:8080
+```
 
 Изучите [бэкап БД](https://github.com/netology-code/virt-homeworks/tree/master/06-db-03-mysql/test_data) и 
 восстановитесь из него.
-
+```
+sudo wget https://raw.githubusercontent.com/netology-code/virt-homeworks/master/06-db-03-mysql/test_data/test_dump.sql
+mysql < test_dump.sql -uroot -p test_db
+```
 Перейдите в управляющую консоль `mysql` внутри контейнера.
+```
+sudo docker-compose up -d 
+sudo docker-compose ps
+```
+![img_1.png](img_1.png)
+```
+sudo docker exec -it src_db_1 bash
 
+mysql -uroot -p
+
+```
 Используя команду `\h` получите список управляющих команд.
-
+![img_2.png](img_2.png)
 Найдите команду для выдачи статуса БД и **приведите в ответе** из ее вывода версию сервера БД.
-
+```
+\s
+```
+![img_3.png](img_3.png)
 Подключитесь к восстановленной БД и получите список таблиц из этой БД.
-
+``` 
+connect test_db;
+show tables;
+```
 **Приведите в ответе** количество записей с `price` > 300.
-
+``` 
+SELECT * FROM orders;
+SELECT * FROM orders WHERE price >300;
+```
+![img_4.png](img_4.png)
 В следующих заданиях мы будем продолжать работу с данным контейнером.
 
 ## Задача 2
@@ -34,22 +84,47 @@
 - аттрибуты пользователя:
     - Фамилия "Pretty"
     - Имя "James"
+``` 
+create user 'test'@'localhost' identified with mysql_native_password by 'test-pass' password expire interval 180 day failed_login_attempts 3 attribute '{"fname": "Pretty", "lname": "James"}';
+alter user 'test'@'localhost' with max_queries_per_hour 100;
+grant select on test_db.* to 'test'@'localhost';
+```
 
 Предоставьте привелегии пользователю `test` на операции SELECT базы `test_db`.
-    
+ ``` 
+ GRANT SELECT ON test_db.* TO 'test'@'localhost';
+ ```   
 Используя таблицу INFORMATION_SCHEMA.USER_ATTRIBUTES получите данные по пользователю `test` и 
+``` 
+ SELECT * FROM INFORMATION_SCHEMA.USER_ATTRIBUTES WHERE user='test';
+```
+![img_5.png](img_5.png)
+
 **приведите в ответе к задаче**.
 
 ## Задача 3
 
 Установите профилирование `SET profiling = 1`.
+![img_6.png](img_6.png)
 Изучите вывод профилирования команд `SHOW PROFILES;`.
-
+![img_7.png](img_7.png)
 Исследуйте, какой `engine` используется в таблице БД `test_db` и **приведите в ответе**.
+``` 
+SELECT TABLE_NAME, ENGINE FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'test_db';
+```
+![img_8.png](img_8.png)
 
 Измените `engine` и **приведите время выполнения и запрос на изменения из профайлера в ответе**:
 - на `MyISAM`
 - на `InnoDB`
+```
+ALTER TABLE orders ENGINE=MyISAM;
+```
+![img_9.png](img_9.png)
+```
+ALTER TABLE orders ENGINE=InnoDB;
+```
+![img_10.png](img_10.png)
 
 ## Задача 4 
 
@@ -63,7 +138,12 @@
 - Размер файла логов операций 100 Мб
 
 Приведите в ответе измененный файл `my.cnf`.
+``` 
+cat /etc/mysql/my.cnf
+для удобного редактирования файла пришлось установить nano  в контейнер
+```
 
+![img_12.png](img_12.png)
 ---
 
 ### Как оформить ДЗ?
