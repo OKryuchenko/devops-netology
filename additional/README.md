@@ -39,3 +39,7 @@
 
 # Docker
 1. [Docker Swarm](https://docs.docker.com/engine/reference/commandline/swarm_init/) 
+
+#Terraform
+1. [Regestry](https://registry.terraform.io/)
+2. 
