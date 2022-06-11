@@ -42,4 +42,4 @@
 
 #Terraform
 1. [Regestry](https://registry.terraform.io/)
-2. 
+2. [YandexCloud Stprage](https://cloud.yandex.ru/docs/tutorials/infrastructure-management/terraform-state-storage#create-service-account)

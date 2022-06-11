@@ -1,0 +1,8 @@
+#cloud-config
+users:
+  - name: vagrant
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+SHA256:O853JyHi5gt8FWHDCbWta6StTT9aQLXQdNXX4f+WoM0 vagrant@terraform01
