@@ -2,10 +2,21 @@
 
 С `golang` в рамках курса, мы будем работать не много, поэтому можно использовать любой IDE. 
 Но рекомендуем ознакомиться с [GoLand](https://www.jetbrains.com/ru-ru/go/).  
+![img.png](img.png)
+```Для коррекнтой работы в VSCode изменил settings.json
+{
+  "gopls": {
+    "experimentalWorkspaceModule": true,
+    }, 
+```
+![img_1.png](img_1.png)
 
 ## Задача 1. Установите golang.
 1. Воспользуйтесь инструкций с официального сайта: [https://golang.org/](https://golang.org/).
 2. Так же для тестирования кода можно использовать песочницу: [https://play.golang.org/](https://play.golang.org/).
+
+>sudo apt install golang
+
 
 ## Задача 2. Знакомство с gotour.
 У Golang есть обучающая интерактивная консоль [https://tour.golang.org/](https://tour.golang.org/). 
@@ -25,22 +36,112 @@
     import "fmt"
     
     func main() {
-        fmt.Print("Enter a number: ")
+        fmt.Print("Введите количество метров: ")
         var input float64
         fmt.Scanf("%f", &input)
     
-        output := input * 2
+        output := input * 0.3048
     
-        fmt.Println(output)    
+        fmt.Println("В " input "метрах " output " фунтов")    
     }
     ```
- 
+ ``` 
+1. создаем димррикторрию с проектом   
+2. инициализируем модуль   
+>go mod init metr-to-pound
+3. запускаем файл
+>go run main.go
+```
+``` 
+  package main
+    
+    import "fmt"
+    
+    func main() {
+        fmt.Print("Введите количество метров: ")
+        var input float64
+        fmt.Scanf("%f", &input)
+    
+        output := input * 0.3048
+    
+        fmt.Println("В " input "метрах " output " фунтов")    
+    }
+```
+![img_2.png](img_2.png)
+
 1. Напишите программу, которая найдет наименьший элемент в любом заданном списке, например:
     ```
     x := []int{48,96,86,68,57,82,63,70,37,34,83,27,19,97,9,17,}
     ```
+   
+```python
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+func main() {
+	x := []int{48, 96, 86, 68, 57, 82, 63, 70, 37, 34, 83, 27, 19, 97, 9, 17}
+	// Отсортировать и взять последний элемент
+	sort.Ints(x)
+	fmt.Println("максимальный элемент методом сортировки: ", x[len(x)-1])
+
+	// Или через цикл
+	max := x[0]
+	for _, element := range x {
+		if element > max {
+			max = element
+		}
+	}
+
+	fmt.Println("максимальный элемент через цикл: ", max)
+
+	min := x[0]
+	for _, element := range x {
+		if element < min {
+			min = element
+		}
+	}
+
+	fmt.Println("минимальный элемент через цикл: ", min)
+}
+
+```
 1. Напишите программу, которая выводит числа от 1 до 100, которые делятся на 3. То есть `(3, 6, 9, …)`.
 
+```python
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	a := makeRange(1, 100)
+	for _, value := range a {
+		res := value % 3
+		if res < 1 {
+			fmt.Println("число",value, "делится на 3")
+		}
+
+	}
+}
+
+func makeRange(min, max int) []int {
+	a := make([]int, max-min+1)
+	for i := range a {
+		a[i] = min + i
+	}
+	return a
+}
+
+```
+```
+не удалось вывести в список типа `(3, 6, 9, …)` 
+```
+![img_3.png](img_3.png)
 В виде решения ссылку на код или сам код. 
 
 ## Задача 4. Протестировать код (не обязательно).
