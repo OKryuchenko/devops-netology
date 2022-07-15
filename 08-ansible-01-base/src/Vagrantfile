@@ -35,18 +35,34 @@ Vagrant.configure(2) do |config|
         vb.customize ["modifyvm", :id, "--memory", machine[:ram]]
         vb.customize ["modifyvm", :id, "--cpus", machine[:core]]
         vb.name = machine[:hostname]
-        config.vm.provision :shell, :inline => 'curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -'
-        config.vm.provision :shell, :inline => 'sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"'
-        config.vm.provision :shell, :inline => 'sudo apt-get update && sudo apt-get install terraform'
+#         config.vm.provision :shell, :inline => 'curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -'
+#         config.vm.provision :shell, :inline => 'sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"'
+#         config.vm.provision :shell, :inline => 'sudo apt-get update && sudo apt-get install terraform'
 #         config.vm.provision :shell, :inline =>'sudo mkdir -p /docker-entrypoint-initdb.d'
 #         config.vm.provision :shell, :inline =>'sudo mkdir -p /var/lib/postgresql/data'
 #         config.vm.provision :shell, :inline =>'sudo mkdir -p /mnt/pg_dump'
-#         config.vm.provision :shell, :inline => "sudo apt-get update --fix-missing"
+        config.vm.provision :shell, :inline => "sudo apt-get update --fix-missing"
+#         config.vm.provision :shell, :inline => "sudo apt-get install epel-release"
+#         config.vm.provision :shell, :inline => "sudo apt-get install ansible -y"
+
+
 #         #config.vm.provision :shell, :inline => "curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -"
 #         config.vm.provision :shell, :inline => 'sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"'
 #         config.vm.provision :shell, :inline => 'sudo apt-get install docker-ce docker-ce-cli containerd.io'
 #         config.vm.provision :shell, :inline => "sudo apt-get install docker - y"
+#        ***    install pip3    ***
+        config.vm.provision :shell, :inline => 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
+        config.vm.provision :shell, :inline => 'python3 get-pip.py'
+#         config.vm.provision :shell, :inline => 'python3 get-pip.py --user'
+        config.vm.provision :shell, :inline => 'python3 -m pip install ansible'
+#         config.vm.provision :shell, :inline => 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
+#         config.vm.provision :shell, :inline => 'python3 get-pip.py --user'
+#         config.vm.provision :shell, :inline => 'python3 get-pip.py --user'
+#         config.vm.provision :shell, :inline => 'python3 -m pip install --user ansible'
 
+
+# yum install epel-release - подготовка к установке
+# groupadd ansible && useradd -g ansible ansible && passwd ansible
 #         config.vm.provision :shell, :inline => "sudo apt-get update && sudo apt-get install packer"
 #         config.vm.provision :shell, :inline => "sudo apt-get --yes install docker"
 #         config.vm.provision :shell, :inline => "sudo apt-get --yes install docker-compose"
