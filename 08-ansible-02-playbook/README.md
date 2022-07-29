@@ -12,7 +12,7 @@
 1. Приготовьте свой собственный inventory файл `prod.yml`.
 2. Допишите playbook: нужно сделать ещё один play, который устанавливает и настраивает [vector](https://vector.dev).
 
-При установке последней версии солкнулся с проблемой. Решения кроме установки более старой версии не нашёл. Centos7
+При установке последней версии столкнулся с проблемой. Решения кроме установки более старой версии не нашёл. Centos7
 ![img.png](img.png)
 3. При создании tasks рекомендую использовать модули: `get_url`, `template`, `unarchive`, `file`.
 4. Tasks должны: скачать нужной версии дистрибутив, выполнить распаковку в выбранную директорию, установить vector.
@@ -26,8 +26,11 @@
 >ansible-playbook site.yml -i inventory/prod.yml --check --diff
 8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
 ![img_1.png](img_1.png)
-9. Подготовьте README.md файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги.
-10. Готовый [playbook](https://github.com/OKryuchenko/devops-netology/blob/master/08-ansible-02-playbook/playbook/site.yml) выложите в свой репозиторий, поставьте тег `08-ansible-02-playbook` на фиксирующий коммит, в ответ предоставьте ссылку на него.
+9. Подготовьте README.md файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги.   
+[README.md](https://github.com/OKryuchenko/devops-netology/blob/master/08-ansible-02-playbook/playbook/README.md)
+
+10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-02-playbook` на фиксирующий коммит, в ответ предоставьте ссылку на него.   
+[playbook](https://github.com/OKryuchenko/devops-netology/blob/master/08-ansible-02-playbook/playbook/site.yml)
 
 ---
 
