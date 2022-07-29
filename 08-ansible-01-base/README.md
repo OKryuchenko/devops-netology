@@ -97,4 +97,7 @@ ansible-doc -t connection -l
 ansible-doc -t module -l
 #тестирование кода на ошибки
 ansible-lint site.yml
+ansible-inventory -i inventory/prod.yml --list
+ansible-inventory -i inventory/prod.yml --host ubuntu
+
 ```

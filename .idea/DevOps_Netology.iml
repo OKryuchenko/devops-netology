@@ -8,5 +8,6 @@
     <orderEntry type="module" module-name="DevOps_HomeWork" />
     <orderEntry type="module" module-name="mnt-homeworks" />
     <orderEntry type="module" module-name="edu" />
+    <orderEntry type="module" module-name="playbook" />
   </component>
 </module>

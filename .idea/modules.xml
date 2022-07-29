@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/DevOps_Netology.iml" filepath="$PROJECT_DIR$/.idea/DevOps_Netology.iml" />
       <module fileurl="file://$PROJECT_DIR$/../edu/.idea/edu.iml" filepath="$PROJECT_DIR$/../edu/.idea/edu.iml" />
       <module fileurl="file://$PROJECT_DIR$/../mnt-homeworks/.idea/mnt-homeworks.iml" filepath="$PROJECT_DIR$/../mnt-homeworks/.idea/mnt-homeworks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../playbook/.idea/playbook.iml" filepath="$PROJECT_DIR$/../playbook/.idea/playbook.iml" />
       <module fileurl="file://$PROJECT_DIR$/../sysadm-homeworks/.idea/sysadm-homeworks.iml" filepath="$PROJECT_DIR$/../sysadm-homeworks/.idea/sysadm-homeworks.iml" />
     </modules>
   </component>

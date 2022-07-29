@@ -8,7 +8,7 @@ INVENTORY_PATH = "../ansible/inventory"
 
 servers = [
   {
-    :hostname => HOST_PREFIX + "01" + DOMAIN,
+    :hostname => HOST_PREFIX + "02" + DOMAIN,
     :ip => NET + "16",
     :ssh_host => "20011",
     :ssh_vm => "22",
@@ -21,7 +21,7 @@ servers = [
 ]
 
 Vagrant.configure(2) do |config|
-  config.vm.synced_folder "../..", "/vagrant", disabled: false
+  config.vm.synced_folder "../../..", "/vagrant", disabled: false
   servers.each do |machine|
     config.vm.define machine[:hostname] do |node|
       node.vm.box = ISO

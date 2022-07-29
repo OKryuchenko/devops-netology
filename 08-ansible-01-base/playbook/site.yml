@@ -4,6 +4,10 @@
     # hosts: centos7
     tasks:
     - block:
+      - name: Redefined vars
+        ansible.builtin.set_fact:
+          custom_var: random
+        when: ansible_host == "centos7"
       - name: Print OS
         ignore_errors: True
         debug:
@@ -14,7 +18,6 @@
         #ansible.builtin.command: echo 1
         #changed_when: result.stdout == "1"
         #ignore_errors: True
-        
         debug:
           # msg: "I`m stll working"
           var: custom_var

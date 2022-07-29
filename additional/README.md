@@ -48,4 +48,7 @@
 1. [Go Tour](https://go.dev/tour/welcome/1)
 2. [Синтаксический сахар](https://thecode.media/sugar/)
 3. [Go Folders](https://github.com/golang-standards/project-layout/blob/master/README_ru.md)
-4. 
+
+# Ansible
+[Ansible Docs](https://docs.ansible.com/ansible/latest/user_guide/)
+[Ansible Loops](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html)

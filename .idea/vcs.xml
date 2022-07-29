@@ -10,5 +10,6 @@
     <mapping directory="$PROJECT_DIR$/terraform/terraform" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../edu" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../mnt-homeworks" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../playbook" vcs="Git" />
   </component>
 </project>

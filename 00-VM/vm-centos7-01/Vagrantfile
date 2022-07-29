@@ -1,0 +1,54 @@
+# -*- mode: ruby -*-
+# vagrant box add "centos/7" file:///C:\Users\09\.vagrant.d\boxes\CentOS-7-x86_64-Vagrant-2004_01.VirtualBox.box
+ISO = "centos/7"
+# VERSION = "3.6.8"
+NET = "192.168.1."
+DOMAIN = ".netology"
+HOST_PREFIX = "centos7-"
+INVENTORY_PATH = "../ansible/inventory"
+
+servers = [
+  {
+    :hostname => HOST_PREFIX + "03" + DOMAIN,
+    :ip => NET + "22",
+    :ssh_host => "22",
+    :ssh_vm => "22",
+    :http_host => "9000",
+    :http_vm => "9000",
+    :ram => 2048,
+    :core => 2
+      }
+]
+
+#config.vm.box_version = "3.6.8"
+
+Vagrant.configure(2) do |config|
+  # config.vm.synced_folder "../../..", "/vagrant", disabled: false
+  # config.vm.synced_folder "../../..", "/mnt/netology", disabled: false
+  servers.each do |machine|
+    config.vm.define machine[:hostname] do |node|
+      # config.vm.box = "centos/7"
+      node.vm.box = "centos/7"
+      # node.vm.box = ISO
+      # node.vm.box_version = VERSION
+      node.vm.hostname = machine[:hostname]
+      node.vm.network "private_network", ip: machine[:ip]
+      node.vm.network :forwarded_port, guest: machine[:ssh_vm], host: machine[:ssh_host]
+      node.vm.network :forwarded_port, guest: machine[:http_vm], host: machine[:http_host]
+
+      node.vm.provider "virtualbox" do |vb|
+        vb.customize ["modifyvm", :id, "--memory", machine[:ram]]
+        vb.customize ["modifyvm", :id, "--cpus", machine[:core]]
+        vb.name = machine[:hostname]
+        # config.vm.provision :shell, :inline => "sudo apt-get update --fix-missing"
+        # config.vm.provision :shell, :inline => "sudo yum install vim-enhanced -y"  
+      end
+      #node.vm.provision "ansible" do |setup|
+      #  setup.inventory_path = INVENTORY_PATH
+      #  setup.playbook = "../ansible/provision.yml"
+      #  setup.become = true
+      #  setup.extra_vars = { ansible_user: 'vagrant' }
+      #end
+    end
+  end
+end
