@@ -27,7 +27,7 @@
 8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
 ![img_1.png](img_1.png)
 9. Подготовьте README.md файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги.
-10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-02-playbook` на фиксирующий коммит, в ответ предоставьте ссылку на него.
+10. Готовый [playbook](https://github.com/OKryuchenko/devops-netology/blob/master/08-ansible-02-playbook/playbook/site.yml) выложите в свой репозиторий, поставьте тег `08-ansible-02-playbook` на фиксирующий коммит, в ответ предоставьте ссылку на него.
 
 ---
 
