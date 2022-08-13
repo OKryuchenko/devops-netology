@@ -1,0 +1,44 @@
+# ---
+# all:
+#   children:
+#     clickhouse:
+#       hosts:
+#         clickhouse-01:
+#           ansible_connection: ssh
+#           # ansible_connection: 192.168.1.22
+#           # ansible_host: 192.168.1.22
+#           ansible_host: 62.84.113.204
+#           ansible_user: centos
+#           # asible_password: vagrant
+#     lighthouse:
+#       lighthouse-01:  
+#         ansible_connection: ssh
+#         # ansible_connection: 192.168.1.22
+#         ansible_host: 62.84.113.23
+#         ansible_user: centos
+#         # asible_password: vagrant
+#     vector:
+#       vector-01:  
+#         ansible_connection: ssh
+#         # ansible_connection: 192.168.1.22
+#         ansible_host: 62.84.112.120
+#         ansible_user: centos
+#         # asible_password: vagrant
+
+
+---
+clickhouse:
+  hosts:
+    clickhouse-01:
+      ansible_host: 84.201.133.116
+      ansible_user: centos
+lighthouse:
+  hosts:
+    lighthouse-01:
+      ansible_host: 84.201.134.103
+      ansible_user: centos
+vector:
+  hosts:
+    vector-01:
+      ansible_host: 84.201.129.29
+      ansible_user: centos

@@ -6,6 +6,8 @@
     <mapping directory="$PROJECT_DIR$/07-terraform-04-teamwork/terraform/tfc-getting-started" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/07-terraform-06-providers/learn-terraform-hashicups-provider" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/07-terraform-06-providers/terraform-provider-aws" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/08-ansible-03-yandex copy/playbook" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/08-ansible-03-yandex/playbook copy" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/ansible" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/terraform/terraform" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../edu" vcs="Git" />

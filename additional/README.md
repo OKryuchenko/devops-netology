@@ -52,3 +52,4 @@
 # Ansible
 [Ansible Docs](https://docs.ansible.com/ansible/latest/user_guide/)
 [Ansible Loops](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html)
+[cloud_modules](https://docs.ansible.com/ansible/2.9/modules/list_of_cloud_modules.html)

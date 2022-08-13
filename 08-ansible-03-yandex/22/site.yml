@@ -1,0 +1,15 @@
+---
+- name: Print fact
+  hosts: all
+  tasks:
+    - ansible.builtin.set_fact:
+        my_set_fact: my fact
+    - name: Print facts
+      ansible.builtin.debug:
+        msg: "{{ fact }}"
+        # msg: "{{ my_set_fact }}"
+
+
+# запускаем ansible-playbook -i inventory/prod/ site.yml
+# в данном случае переменные изолируются по папке  inventory/prod/ 
+

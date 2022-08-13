@@ -1,0 +1,53 @@
+---
+# vector_url: "https://packages.timber.io/vector/{{ vector_version }}/vector-{{ vector_version }}-1.x86_64.rpm"
+# vector_version: 0.20.0
+# # ----
+# ansible_user_id: "centos"
+# ansible_user_gid: "centos"
+# # ----
+# vector_config:
+#   sources: 
+#     our_log:   
+#       type: file
+#       ignore_older_secs: 600
+#       include:
+#       - /var/log/**/*.log
+#       read_from: beginning
+#   transforms:
+#   sinks:
+#     to_clickhouse:
+#       type: clickhouse
+#       inputs:
+#         - our_log
+#       database: custom
+#       endpoint: http://51.250.78.78:8123
+#       table: my_table
+#       compression: gzip
+#       healthcheck: false
+#       skip_unknown_fields: true
+
+vector_url: https://packages.timber.io/vector/{{ vector_version }}/vector-{{ vector_version }}-1.x86_64.rpm
+# vector_version: 0.20.0
+vector_version: 0.21.1
+vector_config:
+  sources: 
+    our_log:   
+      type: file
+      ignore_older_secs: 600
+      include:
+      - /var/log/**/*.log
+      read_from: beginning
+  transforms:
+  sinks:
+    to_clickhouse:
+      type: clickhouse
+      inputs:
+        - our_log
+      database: custom
+      endpoint: http://84.201.129.29:8123
+      table: my_table
+      acknowledgements: null
+      compression: gzip
+      encoding: null
+      healthcheck: null
+      skip_unknown_fields: null

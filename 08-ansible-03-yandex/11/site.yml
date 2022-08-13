@@ -1,0 +1,8 @@
+---
+- name: Print fact
+  hosts: all
+  tasks:
+    - name: Print facts
+      ansible.builtin.debug:
+        msg: "{{ fact }}"
+

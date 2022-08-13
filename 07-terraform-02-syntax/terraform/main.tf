@@ -40,6 +40,30 @@ resource "yandex_compute_instance" "vm-1" {
   }
 }
 
+
+resource "yandex_compute_instance" "vm-2" {
+  name = "terraform-netology-02"
+
+  resources {
+    cores  = 2
+    memory = 2
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "fd8iqd03vink8hs1nppp"
+    }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.subnet-1.id
+    nat       = true
+  }
+
+  metadata = {
+    ssh-keys = "${file("./meta.txt")}"
+  }
+}
 resource "yandex_vpc_network" "network-1" {
   name = "network1"
 }
