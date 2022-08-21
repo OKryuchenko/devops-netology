@@ -9,5 +9,7 @@
     <orderEntry type="module" module-name="mnt-homeworks" />
     <orderEntry type="module" module-name="edu" />
     <orderEntry type="module" module-name="playbook" />
+    <orderEntry type="module" module-name="lighthouse-role" />
+    <orderEntry type="module" module-name="vector-role" />
   </component>
 </module>

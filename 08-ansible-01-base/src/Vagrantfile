@@ -42,6 +42,7 @@ Vagrant.configure(2) do |config|
 #         config.vm.provision :shell, :inline =>'sudo mkdir -p /var/lib/postgresql/data'
 #         config.vm.provision :shell, :inline =>'sudo mkdir -p /mnt/pg_dump'
         config.vm.provision :shell, :inline => "sudo apt-get update --fix-missing"
+        config.vm.provision :shell, :inline => "sudo apt-get install python3.9 -y" 
 #         config.vm.provision :shell, :inline => "sudo apt-get install epel-release"
 #         config.vm.provision :shell, :inline => "sudo apt-get install ansible -y"
 
@@ -50,6 +51,7 @@ Vagrant.configure(2) do |config|
 #         config.vm.provision :shell, :inline => 'sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"'
 #         config.vm.provision :shell, :inline => 'sudo apt-get install docker-ce docker-ce-cli containerd.io'
 #         config.vm.provision :shell, :inline => "sudo apt-get install docker - y"
+
 #        ***    install pip3    ***
         config.vm.provision :shell, :inline => 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
         config.vm.provision :shell, :inline => 'python3 get-pip.py'

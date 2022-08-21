@@ -15,3 +15,4 @@ ansible-playbook 1.yml --tags tagged,never,untagged
 
  ansible-playbook site.yml -i inventory/prod.yml
  ansible-playbook site.yml -i inventory/prod.yml --list-hosts #список хостов
+ ansible-playbook site.yml -i inventory/prod.yml --start-at-task "Vector | Template config"
