@@ -108,7 +108,9 @@
         executable: pip3
         name:
           - selinux
-          - ansible<3.0
+          - ansible-core==2.11.12
+          # - ansible<3.0
+        # state: present
         state: present
     - name: Reinstall Selinux
       become_user: root

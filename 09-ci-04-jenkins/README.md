@@ -7,10 +7,31 @@
 3. Запустить и проверить работоспособность.
 http://84.201.135.100:8080/
 4. Сделать первоначальную настройку.
-cat /var/lib/jenkins/secrets/initialAdminPassword
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 c5ef7de3ff834d089b7238ad1903dd79
+Команда запуска `ssh 84.201.134.11 java -jar /opt/jenkins_agent/agent.jar`
+![img.png](img.png)
 
+Не принимает ключи с Jenkinsa
+![img_1.png](img_1.png)
+` git ls-remote -h git@github.com:OKryuchenko/vector-role.git`
+1. меняем пароль для пользователя jenkins
+`sudo passwd jenkins` `159633331`
+2. переключаемся на польлзоватлея jenkins 
+`su jenkins`
+3. добавляем публичный ключ в git
+`cat ~/.ssh/id_rsa.pub`
+4. добавляем закрытый ключ в настройки jenkins
+`cat ~/.ssh/id_rsa`
+Получаем ошибку
+![img_2.png](img_2.png)
+Пробуем с jenkins по ssh подключиться к репозиторию
+![img_3.png](img_3.png)
+После успешного подключения, ключ в jenkins тоже работает.
+![img_4.png](img_4.png)
 
+На агенте пришлось тоже прописывать ключи.
+ git ls-remote -h git@github.com:OKryuchenko/mnt-homeworks-ansible.git
 
 ## Основная часть
 
