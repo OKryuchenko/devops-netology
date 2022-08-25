@@ -28,7 +28,7 @@
 
 Если всё отработало в рамках ожидания - выгрузить схемы workflow для импорта в XML. Файлы с workflow приложить к решению задания.
 
-[WorkFlow_Netology_other](https://github.com/OKryuchenko/devops-netology/blob/master/09-ci-01-intro/WorkFlow_Netology_other.xml)
+[WorkFlow_Netology_other](https://github.com/OKryuchenko/devops-netology/blob/master/09-ci-01-intro/WorkFlow_Netology_other.xml)   
 [WorkFlow_Netology_bugs](https://github.com/OKryuchenko/devops-netology/blob/master/09-ci-01-intro/WorkFlow_Netology_bugs.xml)
 ---
 
