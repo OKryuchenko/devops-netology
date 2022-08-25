@@ -28,6 +28,8 @@
 
 Если всё отработало в рамках ожидания - выгрузить схемы workflow для импорта в XML. Файлы с workflow приложить к решению задания.
 
+[]()
+[](https://github.com/OKryuchenko/devops-netology/blob/master/09-ci-01-intro/WorkFlow_Netology_bugs.xml)
 ---
 
 ### Как оформить ДЗ?
