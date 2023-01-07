@@ -56,3 +56,21 @@
 Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
 
 ---
+Настройка репозитория Red Hat / CentOS:
+$ curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh" | sudo bash
+
+Установка раннера Red Hat / CentOS:
+$ sudo yum install gitlab-runner -y
+
+Запуск службы:
+$ sudo systemctl enable gitlab-runner --now gitlab-runner
+
+  sudo gitlab-runner register \
+    --non-interactive \
+    --url "https://gitlab.com/" \
+    --registration-token "GR1348941Kyv3N1C84xa2jWDzx8yp" \
+    --description "shell-runner" \
+    --run-untagged="true" \
+    --tag-list "shell,runner" \
+    --locked="false" \
+     --executor "shell"

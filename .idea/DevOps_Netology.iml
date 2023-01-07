@@ -11,5 +11,10 @@
     <orderEntry type="module" module-name="playbook" />
     <orderEntry type="module" module-name="lighthouse-role" />
     <orderEntry type="module" module-name="vector-role" />
+    <orderEntry type="module" module-name="devops-diplom-yandexcloud" />
+    <orderEntry type="module" module-name="nginx-role" />
+    <orderEntry type="module" module-name="Diplom" />
+    <orderEntry type="module" module-name="netology-kubernetes-for-beginners" />
+    <orderEntry type="module" module-name="devops-questions" />
   </component>
 </module>

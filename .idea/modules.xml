@@ -4,9 +4,14 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../DevOps_HomeWork/.idea/DevOps_HomeWork.iml" filepath="$PROJECT_DIR$/../DevOps_HomeWork/.idea/DevOps_HomeWork.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/DevOps_Netology.iml" filepath="$PROJECT_DIR$/.idea/DevOps_Netology.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Diplom/.idea/Diplom.iml" filepath="$PROJECT_DIR$/../Diplom/.idea/Diplom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../devops-diplom-yandexcloud/.idea/devops-diplom-yandexcloud.iml" filepath="$PROJECT_DIR$/../devops-diplom-yandexcloud/.idea/devops-diplom-yandexcloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../devops-questions/.idea/devops-questions.iml" filepath="$PROJECT_DIR$/../devops-questions/.idea/devops-questions.iml" />
       <module fileurl="file://$PROJECT_DIR$/../edu/.idea/edu.iml" filepath="$PROJECT_DIR$/../edu/.idea/edu.iml" />
       <module fileurl="file://$PROJECT_DIR$/../lighthouse-role/.idea/lighthouse-role.iml" filepath="$PROJECT_DIR$/../lighthouse-role/.idea/lighthouse-role.iml" />
       <module fileurl="file://$PROJECT_DIR$/../mnt-homeworks/.idea/mnt-homeworks.iml" filepath="$PROJECT_DIR$/../mnt-homeworks/.idea/mnt-homeworks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../netology-kubernetes-for-beginners/.idea/netology-kubernetes-for-beginners.iml" filepath="$PROJECT_DIR$/../netology-kubernetes-for-beginners/.idea/netology-kubernetes-for-beginners.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../nginx-role/.idea/nginx-role.iml" filepath="$PROJECT_DIR$/../nginx-role/.idea/nginx-role.iml" />
       <module fileurl="file://$PROJECT_DIR$/../playbook/.idea/playbook.iml" filepath="$PROJECT_DIR$/../playbook/.idea/playbook.iml" />
       <module fileurl="file://$PROJECT_DIR$/../sysadm-homeworks/.idea/sysadm-homeworks.iml" filepath="$PROJECT_DIR$/../sysadm-homeworks/.idea/sysadm-homeworks.iml" />
       <module fileurl="file://$PROJECT_DIR$/../vector-role/.idea/vector-role.iml" filepath="$PROJECT_DIR$/../vector-role/.idea/vector-role.iml" />

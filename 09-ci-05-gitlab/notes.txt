@@ -1,0 +1,97 @@
+ Запускаем первичную конфигурацию GitLab'а
+- name: "Reconfigure starting..."
+  block:
+    # Асинхронно запускаем эту таску, ибо в облаке она почему-то виснет, но виснет
+    # после того, как саму задачу выполнит.
+    # В общем, даём ей 300 секунд на выполнение. Выполнится нормально на нормальной
+    # машине - отлично. Сдохнет в облаке после выполнения - да и фиг с ней.
+    - name: "Reconfigure Gitlab"
+      become: true
+      ansible.builtin.command:
+        cmd: "sudo gitlab-ctl reconfigure"
+      async: 300
+      poll: 0
+      changed_when: false
+  rescue:
+    - name: "Die zombie, die!!!"
+      ansible.builtin.debug:
+        msg: [
+          "Если вы это видите, то задача по реконфигурации GitLab'а таки сдохла",
+          "Но не переживайте, саму переконфигурацию она, обычно, успевает сделать.",
+          "В общем, всё должно работать нормально в 99% случаев",
+          " ",
+          "Почему помирает - сие мне не ведомо, возможно виснет ssh-сессия Ansible.",
+          "Однако случается сие почему-то только при работе в ЯОблаке.",
+          "Почему не помирает в нормальной KVM-ферме - да кто же его знает..."
+        ]
+
+
+        Ilya Koryuchkin, [30.07.2022 17:25]
+- name: Gitlab | Extract Runner Registration Token directly from Gitlab Rails console
+  become: true
+  become_method: sudo
+  ansible.builtin.shell: 'gitlab-rails runner -e production "puts Gitlab::CurrentSettings.current_application_settings.runners_registration_token"'
+  register: runners_registration_token
+  when: "'gitlab' in inventory_hostname"
+
+- name: Gitlab | set gitlab_runner_token
+  become: true
+  become_method: sudo
+  #when: runners_registration_token.rc == 0
+  set_fact:
+    gitlab_runner_token: "{{ runners_registration_token.stdout }}"
+
+- name: print1
+  ansible.builtin.debug:
+    msg: "{{ runners_registration_token.stdout }}"
+
+- name: print2
+  ansible.builtin.debug:
+    msg: "{{ gitlab_runner_token }}"
+
+- name: Gitlab | register shell runner
+  become: true
+  become_method: sudo
+  ansible.builtin.command: |
+    gitlab-runner register \
+    --non-interactive \
+    --url "http://gitlab.kor-iv.ru/" \
+    --registration-token {{ gitlab_runner_token }} \
+    --description "shell-runner" \
+    --run-untagged="true" \
+    --tag-list "shell,runner" \
+    --locked="false" \
+     --executor "shell"
+  when: "'runner' in inventory_hostname"
+
+Ilya Koryuchkin, [30.07.2022 17:26]
+что не так с таками?
+
+Ilya Koryuchkin, [30.07.2022 17:26]
+... тасками
+
+Ilya Koryuchkin, [30.07.2022 17:26]
+skipping: [gitlab] => {
+    "changed": false,
+    "skip_reason": "Conditional result was False"
+
+Ilya Koryuchkin, [30.07.2022 17:26]
+выводит...
+
+Ilya Koryuchkin, [30.07.2022 17:28]
+Если : - name: Gitlab | register shell runner
+  become: true
+  become_method: sudo
+  ansible.builtin.command: |
+    gitlab-runner register \
+    --non-interactive \
+    --url "http://gitlab.kor-iv.ru/" \
+    --registration-token "бла_бла" \
+    --description "shell-runner" \
+    --run-untagged="true" \
+    --tag-list "shell,runner" \
+    --locked="false" \
+     --executor "shell"
+  when: "'runner' in inventory_hostname" . То нормально регистрируется раннер.
+
+  https://coderoad.ru/53966117/%D0%9D%D0%B5-%D1%83%D0%B4%D0%B0%D0%B5%D1%82%D1%81%D1%8F-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C-%D1%82%D0%BE%D0%BA%D0%B5%D0%BD-%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D0%B8-gitlab-runners-%D0%B8%D0%B7-%D0%91%D0%94

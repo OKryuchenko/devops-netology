@@ -30,3 +30,4 @@
 
       - name: Add the current user to docker group
         user: name=vagrant append=yes groups=docker
+        user: name=centos append=yes groups=docker

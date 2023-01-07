@@ -1,0 +1,99 @@
+---
+
+# 
+
+- name: Install Clickhouse
+  hosts: gitlab-runers
+  # debugger: always
+  # debugger: never
+  # debugger: on_failed
+  handlers:
+    - name: Start gitlab service
+      become: true
+      ansible.builtin.service:
+        name: gitlab-runner
+        state: restart
+  tasks:
+    - name: Download the binary for your system
+      become: true
+      ansible.builtin.get_url:
+        url: "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64"
+        dest: "/usr/local/bin/gitlab-runner"
+      # with_items: "{{ clickhouse_packages }}"
+      # check_mode: false # отключаем проверку таски
+    - name: Give it permission to execute
+      ansible.builtin.command: "sudo chmod +x /usr/local/bin/gitlab-runner"
+    # - name: Create a GitLab Runner user
+    #   ansible.builtin.command: "sudo useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash"
+    # # - name: Install and run as a service
+    #   ansible.builtin.command: "sudo gitlab-runner install --user=gitlab-runner --working-directory=/home/gitlab-runner"
+      notify: Start gitlab service
+    - name: Command to register runner
+      ansible.builtin.command: "sudo gitlab-runner register --url https://gitlab.com/ --registration-token {{ REGISTRATION_TOKEN }}"
+ ansible.builtin.command: "
+ "
+
+
+# Download the binary for your system
+# sudo curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
+
+# # Give it permission to execute
+# sudo chmod +x /usr/local/bin/gitlab-runner
+
+# # Create a GitLab Runner user
+# sudo useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash
+
+# # Install and run as a service
+# sudo gitlab-runner install --user=gitlab-runner --working-directory=/home/gitlab-runner
+# sudo gitlab-runner start
+# # Command to register runner
+# sudo gitlab-runner register --url https://gitlab.com/ --registration-token $REGISTRATION_TOKEN
+
+
+
+
+#     - name: Install clickhouse packages
+#       become: true
+#       ansible.builtin.yum:
+#         name:
+#           - clickhouse-common-static-{{ clickhouse_version }}.rpm
+#           - clickhouse-client-{{ clickhouse_version }}.rpm
+#           - clickhouse-server-{{ clickhouse_version }}.rpm
+#       notify: Start clickhouse service
+#     - name: Flush handlers
+#       ansible.builtin.meta: flush_handlers
+#     - name: Create database
+#       ansible.builtin.command: "clickhouse-client -q 'create database logs;'"
+#       register: create_db
+#       failed_when: create_db.rc != 0 and create_db.rc !=82
+#       changed_when: create_db.rc == 0
+#     - name: create templ file
+#       ansible.builtin.template:
+#         src: one.txt.j2
+#         mode: 0755
+#         dest: ./config
+#         backup: true
+# - name: Install Vector
+#   hosts: clickhouse
+#   handlers:
+#    - name: Start Vector service
+#      become: true
+#      ansible.builtin.service:
+#        name: vector
+#        state: restarted
+#   tasks:
+#     - name: Get vector distrib
+#       ansible.builtin.get_url:
+#         url: "https://packages.timber.io/vector/0.20.0/vector-0.20.0-1.x86_64.rpm"
+#         dest: "./vector-0.20.0-1.x86_64.rpm"
+#       # check_mode: true # включаем проверку таски
+#     - name: Install vector packages
+#       become: true
+#       ansible.builtin.yum:
+#         name:
+#           - vector-0.20.0-1.x86_64.rpm
+#       notify: Start Vector service
+
+
+
+
