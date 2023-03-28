@@ -1,0 +1,44 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+VM_CPUCOUNT = "2"
+VM_RAM = "1024"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.define "centos7" do |centos7|
+    centos7.vm.box = "centos/7"
+	centos7.vm.hostname = "centos7"
+    centos7.vm.box_check_update = false
+    centos7.vm.synced_folder '.', '/vagrant', disabled: true
+    #centos7.vm.network "public_network", bridge: "en3: Thunderbolt-Ethernet"
+    centos7.vm.provider :virtualbox do |v|
+      v.gui = false
+      v.memory = "#{VM_RAM}"
+	  v.cpus = "#{VM_CPUCOUNT}"
+    end
+    centos7.vm.provision "shell", inline: <<-SHELL
+      yum update -y
+      #yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+	  sudo yum install -y bridge-utils bind-utils iptables curl net-tools tcpdump rsync telnet openssh-server vim-enhanced
+      #sudo yum install -y curl
+    SHELL
+  end
+
+   config.vm.define "centos8", autostart: false do |centos8|
+     centos8.vm.box = "centos/8"
+ 	centos8.vm.hostname = "centos8"
+    centos8.vm.box_check_update = false
+    centos8.vm.synced_folder '.', '/vagrant', disabled: true
+    centos8.vm.provider :virtualbox do |v|
+       v.gui = false
+       v.memory = "#{VM_RAM}"
+ 	   v.cpus = "#{VM_CPUCOUNT}"
+     end
+     centos8.vm.provision "shell", inline: <<-SHELL
+ 		  yum update -y
+          sudo yum install -y vim
+ 		SHELL
+   end
+end

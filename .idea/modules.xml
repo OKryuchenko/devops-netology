@@ -13,6 +13,7 @@
       <module fileurl="file://$PROJECT_DIR$/../netology-kubernetes-for-beginners/.idea/netology-kubernetes-for-beginners.iml" filepath="$PROJECT_DIR$/../netology-kubernetes-for-beginners/.idea/netology-kubernetes-for-beginners.iml" />
       <module fileurl="file://$PROJECT_DIR$/../nginx-role/.idea/nginx-role.iml" filepath="$PROJECT_DIR$/../nginx-role/.idea/nginx-role.iml" />
       <module fileurl="file://$PROJECT_DIR$/../playbook/.idea/playbook.iml" filepath="$PROJECT_DIR$/../playbook/.idea/playbook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../servionica/.idea/servionica.iml" filepath="$PROJECT_DIR$/../servionica/.idea/servionica.iml" />
       <module fileurl="file://$PROJECT_DIR$/../sysadm-homeworks/.idea/sysadm-homeworks.iml" filepath="$PROJECT_DIR$/../sysadm-homeworks/.idea/sysadm-homeworks.iml" />
       <module fileurl="file://$PROJECT_DIR$/../vector-role/.idea/vector-role.iml" filepath="$PROJECT_DIR$/../vector-role/.idea/vector-role.iml" />
     </modules>

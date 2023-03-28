@@ -1,0 +1,83 @@
+# -*- mode: ruby -*-
+# создает 3 машины с разными ip
+VAGRANTFILE_API_VERSION = "2"
+VM_CPUCOUNT = "2"
+VM_RAM = "1024"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  #config.vm.synced_folder "../../..", "/vagrant", disabled: false
+  config.vm.boot_timeout = 600
+
+  N = 3
+  (1..N).each do |node_id|
+    config.vm.define "node#{node_id}" do |node|
+      node.vm.hostname = "node#{node_id}"
+      node.vm.network "private_network", ip: "192.168.1.#{20+node_id}"
+  end
+end
+                              # if machine_id == N
+                              #   machine.vm.provision :ansible do |ansible|
+                              #     # Disable default limit to connect to all the machines
+                              #     ansible.limit = "all"
+                              #     ansible.playbook = "playbook.yml"
+
+  config.vm.define "node1" do |node1|
+    node1.vm.box = "centos/7"
+	#node1.vm.hostname = "node1.test.serv"
+    node1.vm.box_check_update = false
+    node1.vm.synced_folder '..', '/vagrant', disabled: false
+    #node1.vm.network "public_network", bridge: "en3: Thunderbolt-Ethernet"
+    #node1.vm.network "private_network", ip: "192.168.1.20" 
+    #node1.vm.network "public_network", brige: "en1: Qualcomm Atheros AR8161 PCI-E Gigabit Ethernet Controller (NDIS 6.30)", ip: "192.168.0.20" 
+    #node1.vm.network "public_network", interface: "1"#, ip: "192.168.0.20" 
+    
+    node1.vm.provider :virtualbox do |v|
+      v.gui = false
+      v.memory = "#{VM_RAM}"
+	  v.cpus = "#{VM_CPUCOUNT}"
+    end
+    node1.vm.provision "shell", inline: <<-SHELL
+    echo "localhost"
+    #   yum update -y
+    #   #yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+	#   sudo yum install -y bridge-utils bind-utils iptables curl net-tools tcpdump rsync telnet openssh-server vim-enhanced
+    #   #sudo yum install -y curl
+    SHELL
+  end
+
+   config.vm.define "node2", autostart: false do |node2|
+     node2.vm.box = "centos/7"
+ 	#node2.vm.hostname = "node2"
+    node2.vm.box_check_update = false
+    node2.vm.synced_folder '.', '/vagrant', disabled: true
+    node2.vm.provider :virtualbox do |v|
+       v.gui = false
+       v.memory = "#{VM_RAM}"
+ 	   v.cpus = "#{VM_CPUCOUNT}"
+     end
+     node2.vm.provision "shell", inline: <<-SHELL
+ 		#   yum update -y
+        #   sudo yum install -y vim
+        echo "localhost"
+ 		SHELL
+   end
+
+
+   
+   config.vm.define "node3", autostart: false do |node3|
+    node3.vm.box = "centos/7"
+    #node3.vm.hostname = "node3"
+   node3.vm.box_check_update = false
+   node3.vm.synced_folder '.', '/vagrant', disabled: true
+   node3.vm.provider :virtualbox do |v|
+      v.gui = false
+      v.memory = "#{VM_RAM}"
+       v.cpus = "#{VM_CPUCOUNT}"
+    end
+    node3.vm.provision "shell", inline: <<-SHELL
+        # yum update -y
+        # sudo yum install -y vim
+        echo "localhost"
+        SHELL
+  end
+end

@@ -1,0 +1,75 @@
+
+Vagrant.configure("2") do |config|
+	(1..3).each do |i|
+		config.vm.define "node#{i}" do |web|
+			web.vm.box = "ubuntu/focal64"
+			web.vm.network "forwarded_port", id: "ssh", host: 2222 + i, guest: 22
+			web.vm.network "private_network", ip: "192.168.1.#{20+i}", virtualbox__intnet: true
+			# web.vm.network "public_network", ip: "192.168.0.#{20+i}", virtualbox__intnet: true
+			# config.vm.network "public_network"
+            # public_network
+            web.vm.hostname = "node#{i}"
+
+			# web.vm.provision "shell" do |s|
+			# 	ssh_pub_key = File.readlines("#{Dir.home}/.ssh/id_rsa.pub").first.strip
+				
+            #     # s.inline = <<-SHELL
+			# 	# echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
+			# 	# echo #{ssh_pub_key} >> /root/.ssh/authorized_keys
+
+            #     # sudo apt-get update
+            #     # sudo apt-get install \
+            #     #     ca-certificates \
+            #     #     curl \
+            #     #     gnupg \
+            #     #     lsb-release -f
+            #     # sudo mkdir -m 0755 -p /etc/apt/keyrings
+            #     # curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+            #     # echo \
+            #     # "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+            #     # $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+			# 	# sudo chmod a+r /etc/apt/keyrings/docker.gpg
+            #     # sudo apt-get update
+            #     # sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+                
+                
+            #     # SHELL
+			# end
+            config.vm.define "node1" do |node1|
+                node1.vm.network "forwarded_port", id: "portainer", host: 9000, guest: 9000
+                node1.vm.synced_folder '../../..', '/vagrant', disabled: false
+                node1.vm.hostname = "node1"
+
+            end
+
+
+            # config.vm.define "node3", autostart: false do |node3|
+            #     node3.vm.box = "centos/7"
+            #     #node3.vm.hostname = "node3"
+            #    node3.vm.box_check_update = false
+            #    node3.vm.synced_folder '.', '/vagrant', disabled: true
+            #    node3.vm.provider :virtualbox do |v|
+            #       v.gui = false
+            #       v.memory = "#{VM_RAM}"
+            #        v.cpus = "#{VM_CPUCOUNT}"
+            #     end
+            #     node3.vm.provision "shell", inline: <<-SHELL
+            #     yum update -y
+                
+            #         SHELL
+            #   end
+
+ #config.vm.provision :shell, :inline => "curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -"
+#         config.vm.provision :shell, :inline => 'sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"'
+#         sudo apt-get update --fix-missing
+#           config.vm.provision :shell, :inline => 'sudo apt-get install docker-ce docker-ce-cli containerd.io -y'
+#         config.vm.provision :shell, :inline => "sudo apt-get install docker - y"
+
+			web.vm.provider "virtualbox" do |v|
+				v.name = "node#{i}"
+				v.memory = 2048
+				v.cpus = 1
+			end
+		end
+	end
+end

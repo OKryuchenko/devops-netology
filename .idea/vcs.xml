@@ -21,6 +21,7 @@
     <mapping directory="$PROJECT_DIR$/../netology-kubernetes-for-beginners" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../nginx-role" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../playbook" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../servionica" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../vector-role" vcs="Git" />
   </component>
 </project>
