@@ -1,0 +1,8 @@
+Vagrant.configure(2) do |config|
+  config.vm.box = "generic/debian10"
+  config.vm.provider "hyperv"
+#    config.vm.network "public_network"
+#    config.vm.network "public_network", bridge: "External Switch"
+#    config.vm.network "private_network", bridge: "Internal Switch"
+  config.vm.network "public_network", bridge: "switch-01"
+  end
