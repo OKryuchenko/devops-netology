@@ -19,6 +19,9 @@
 *.rar
 *.tar
 *.zip
+# Virtual Hard Disk
+*.vhd
+*.vhdx
 
 # Logs and databases #
 ######################

@@ -1,0 +1,96 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+	N=5
+    (5..N).each do |i|
+		config.vm.define "node#{i}" do |web|
+			web.vm.box = "generic/debian10"
+      web.vm.box_check_update = false
+			web.vm.network "forwarded_port", id: "ssh", host: 2222 + i, guest: 22
+			# web.vm.network "private_network", ip: "192.168.1.#{20+i}", virtualbox__intnet: true
+			# web.vm.network "public_network", bridge: "switch-lan01"
+			# web.vm.network "public_network", ip: "192.168.0.#{50+i}, bridge: "switch-lan01"
+			
+      # web.vm.network "public_network", ip: "192.168.0.#{39+i}", bridge: "switch-lan01"
+      web.vm.network "public_network", ip: "192.168.0.#{39+i}", bridge: "switch-wifi01"
+      # web.vm.synced_folder '../../..', '/vagrant', disabled: false
+      #   type: 'smb',
+      #   smb_username: ENV['VAGRANT_SMB_USERNAME'] || ENV['USER'],
+      #   smb_password: ENV['VAGRANT_SMB_PASSWORD']
+      # web.vm.synced_folder "../../..", "/vagrant", type: "winrm"
+      web.vm.synced_folder '../../..', '/vagrant', disabled: false, type: 'smb', smb_username: 'smb-laptop-w1', \
+        smb_password: 'pXNtTHW2Zjq96dTm9qtm6LRuU8NVe42PSkxG'
+
+
+			# config.vm.network "public_network"
+            # public_network
+            web.vm.hostname = "node#{i}"
+               web.vm.provider "hyperv" do |v|
+                    v.vmname = "node#{i}"
+                    v.memory = 2048
+                    v.cpus = 2
+              end
+
+    end
+  end
+#   config.vm.define "node1" do |node1|
+#     node1.vm.hostname = "node1"
+#     # node1.vm.network "forwarded_port", id: "portainer", host: 9000, guest: 9000
+#     # node1.vm.synced_folder '../../..', '/vagrant', disabled: false
+#     node1.vm.provision "shell", inline: <<-SHELL
+#     echo 'node1'
+#     SHELL
+# end
+#   config.vm.define "node2" do |node2|
+#       node2.vm.hostname = "node2"
+#       # node2.vm.network "forwarded_port", id: "portainer", host: 9001, guest: 9001
+#       # node2.vm.synced_folder '../../..', '/vagrant', disabled: false
+#       node2.vm.provision "shell", inline: <<-SHELL
+#       echo 'node2'
+#       SHELL
+# end
+#   config.vm.define "node3" do |node3|
+#     node3.vm.hostname = "node3"
+#     # node2.vm.network "forwarded_port", id: "portainer", host: 9001, guest: 9001
+#     # node2.vm.synced_folder '../../..', '/vagrant', disabled: false
+#     node3.vm.provision "shell", inline: <<-SHELL
+#     echo 'node3'
+#     SHELL
+# end
+end
+
+
+
+
+
+
+
+# config.vm.provision "ansible" do |ansible|
+#   ansible.compatibility_mode = "2.0"
+#   ansible.playbook = "./ansible/provision.yml"
+#   ansible.extra_vars = {
+#       'xen_src': xen_src,
+#       'xen_src_version': xen_src_version,
+#       'xen_force_build': xen_force_build,
+#       'xen_patch_path': xen_patch_path,
+#       'enabled_vms': enabled_vms,
+#       'ansible_python_interpreter': '/usr/bin/python3',
+#   }
+# end
+
+# nodo2.vm.provision "shell" do |s|
+#   ssh_pub_key = File.readlines("/home/ciber2/.ssh/id_rsa.pub").first.strip
+#      s.inline = <<-SHELL
+#         echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
+#         echo #{ssh_pub_key} >> /root/.ssh/authorized_keys
+#         SHELL
+# end
+
+# config.vm.provision "shell" do |s1|
+#   ssh_pub_key = File.readlines("/home/lenka/.ssh/id_rsa.pub").first.strip
+#     s1.inline = <<-SHELL
+#     mkdir /root/.ssh
+#     echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
+#     echo #{ssh_pub_key} >> /root/.ssh/authorized_keys
+#     SHELL
+# end
